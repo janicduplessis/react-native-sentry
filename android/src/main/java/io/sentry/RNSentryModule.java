@@ -15,6 +15,7 @@ import com.facebook.react.bridge.ReadableNativeArray;
 import com.facebook.react.bridge.ReadableNativeMap;
 import com.facebook.react.bridge.ReadableType;
 import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.module.annotations.ReactModule;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -31,8 +32,6 @@ import java.util.regex.Pattern;
 
 import io.sentry.android.AndroidSentryClientFactory;
 import io.sentry.android.event.helper.AndroidEventBuilderHelper;
-import io.sentry.event.Breadcrumb;
-import io.sentry.event.BreadcrumbBuilder;
 import io.sentry.event.Event;
 import io.sentry.event.EventBuilder;
 import io.sentry.event.Sdk;
@@ -45,7 +44,10 @@ import io.sentry.event.interfaces.SentryStackTraceElement;
 import io.sentry.event.interfaces.StackTraceInterface;
 import io.sentry.event.interfaces.UserInterface;
 
+@ReactModule(name = RNSentryModule.NAME)
 public class RNSentryModule extends ReactContextBaseJavaModule {
+
+    public static final String NAME = "RNSentry";
 
     private static final Pattern mJsModuleIdPattern = Pattern.compile("(?:^|[/\\\\])(\\d+\\.js)$");
 
@@ -62,7 +64,7 @@ public class RNSentryModule extends ReactContextBaseJavaModule {
 
     @Override
     public String getName() {
-        return "RNSentry";
+        return NAME;
     }
 
     @Override
